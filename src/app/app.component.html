@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>
+    Lista de Links
+  </h1>
+  <label for="input-titulo">Título</label>
+  <div class="input-group mb-3">
+    <input
+      #inputTitulo
+      type="text"
+      class="form-control"
+      id="input-titulo"
+      aria-describedby="basic-addon3"
+    />
+  </div>
+  <form>
+    <label for="input-link">Link</label>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">http://</span>
+      </div>
+      <input
+        #inputLink
+        type="text"
+        class="form-control"
+        id="input-link"
+        aria-describedby="basic-addon3"
+      />
+    </div>
+    <button type="submit" (click)="agregarLink(inputTitulo, inputLink)" class="btn btn-primary">
+      Agregar
+    </button>
+  </form>
+</div>
+<div class="container">
+  <div class="no-items">
+    <p *ngIf="links.length === 0">
+      No hay items, ¿Por qué no agregas uno?
+    </p>
+  </div>
+  <div class="card" *ngFor="let item of links">
+    <link-item (itemEliminado)="eliminarItem($event)" [item]="item"></link-item>
+  </div>
+</div>
